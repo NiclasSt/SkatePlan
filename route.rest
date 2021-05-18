@@ -1,0 +1,29 @@
+GET http://localhost:3000/reservierungen
+
+###
+
+GET http://localhost:3000/reservierungen/60a1a405a602014e1ca77d38
+
+###
+POST http://localhost:3000/reservierungen
+Content-Type: application/json
+
+{
+    "name": "Niclas Strauch",
+    "email": "niclas.strauch@web.de",
+    "tel": "57639395763",
+    "slot": "2"
+}
+
+###
+DELETE http://localhost:3000/reservierungen/60a19e1349de2d5f082fe221
+
+###
+
+PATCH http://localhost:3000/reservierungen/60a1a405a602014e1ca77d38
+Content-Type: application/json
+
+{
+    "name": "Nic Wood"
+
+}
