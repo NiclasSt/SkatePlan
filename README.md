@@ -20,6 +20,8 @@ Bearbeiten öffnet ein Feld, welches dazu dient eine Reservierung zu aktualisier
 
 Löschen dient dazu eine Reservierung aus der Datenbank zu löschen.
 
-die passende .env Datei liegt auf Moodle und die node_modules müssen per console installiert werden. 
+die passende .env Datei liegt auf Moodle und die node_modules müssen per console installiert werden.
+
+Hilfquelle: https://www.youtube.com/channel/UCFbNIlppjAuEX4znoulh0Cw 
 
 MfG Niclas Strauch
