@@ -1,0 +1,6 @@
+<h2>Reservierung bearbeiten</h2>
+<form action="/reservierungen/<%= reservierung.id %>?_method=PUT" method="POST">
+    <%- include('_form_fields') %>
+    <a href="/reservierungen">Abbrechen</a>
+    <button type="submit">Bearbeiten</button>
+</form>

@@ -6,6 +6,8 @@
 </form>
 <br>
 <% reservierungen.forEach(reservierung => { %>
-    <div><%= reservierung.name %> <%= reservierung.slot %></div>
-    
+    <div><%= reservierung.name %></div>
+    <a href="/reservierungen/<%= reservierung.id %>">Anzeigen</a>
+    <a href="/reservierungen/<%= reservierung.id %>/edit">Bearbeiten</a>  
+    <%- include('../partials/deleteForm', {url:`reservierungen/${reservierung.id}` }) %>
 <% }) %>
