@@ -1,43 +1,61 @@
 const { json } = require('express')
 const express = require('express')
-const reservierung = require('../models/reservierung')
 const router = express.Router()
 const Reservierung = require('../models/reservierung')
 
 //GET, alle Reservierungen
 router.get('/' , async (req,res) => {
+    let searchOptions = {}
+    if(req.query.slot !=null && req.query.slot !== '') {
+        searchOptions.slot = req.query.slot
+    }
     try {
-        const reservierungen = await Reservierung.find()
-        res.json(reservierungen) 
-
+        const reservierungen = await Reservierung.find(searchOptions)
+        res.render('reservierungen/index', {
+            reservierungen: reservierungen ,
+             searchOptions: req.query
+        })
     } catch (err) { 
-        res.status(500).json({ mesage: err.message})
+        res.redirect('/')
 
     }
+    
 })
-//GET, eine Rerservierung
-router.get('/:id' , getReservierung, (req,res) => {
-    res.send(res.reservierung)
-        
+
+//Neue Reservierung FORM
+router.get('/new', (req,res) => {
+    res.render('reservierungen/new', {reservierung: new Reservierung() })
 })
+
 //CREATE, eine Reservierung
 router.post('/' , async (req,res) => {
     const reservierung = new Reservierung({
         name: req.body.name,
         email: req.body.email,
         tel: req.body.tel,
-        slot: req.body.slot,
-        
+        slot: req.body.slot,  
     })
     
     try {
         const newReservierung = await reservierung.save()
-        res.status(201).json(newReservierung)
-    } catch (err){
-        res.status(400).json({message: err.message})
+        res.redirect('reservierungen')
+    } catch {
+        res.render('reservierungen/new', {
+            reservierung: reservierung,
+            errorMessage: 'Fehler bei erstellung der Reservierung '
+        })
 
     }
+    
 })
+
+/*
+//GET, eine Rerservierung
+router.get('/:id' , getReservierung, (req,res) => {
+    res.send(res.reservierung)
+        
+})
+
 //UPTADE, eine Reservierung
 router.patch('/:id' , getReservierung, async (req,res)  => {
     if(req.body.name != null) {
@@ -88,5 +106,5 @@ async function getReservierung(req, res, next) {
     res.reservierung = reservierung
     next()
 }
-
+*/
 module.exports = router

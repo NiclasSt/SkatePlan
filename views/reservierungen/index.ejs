@@ -1,0 +1,11 @@
+<h1> Zeige Slots </h1>
+<form action="/reservierungen" method="GET">
+    <label>Slot</label>
+    <input type="number" name="slot" min="1" max="4" value="<%= searchOptions.slot %>">
+    <button type="submit">Anzeigen</button>
+</form>
+<br>
+<% reservierungen.forEach(reservierung => { %>
+    <div><%= reservierung.name %> <%= reservierung.slot %></div>
+    
+<% }) %>
